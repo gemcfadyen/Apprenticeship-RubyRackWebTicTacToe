@@ -9,8 +9,8 @@ class TTTController
       # ResponseBody.with()
       [200, {}, {}]
     elsif route == '/player_options'
-      chosen_player_type = request.params['player_type']
-      chosen_player_type = env['rack.session']['player_type'] = chosen_player_type
+      chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
+      chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
       # selected_params = GameParameters.new(params, session).play which will call
       #game = Game.new(selected_params.player_option)
       #latest_board = game.play(move, board)
