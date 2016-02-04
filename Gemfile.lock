@@ -28,6 +28,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    ttt-core (2.0.0)
 
 PLATFORMS
   ruby
@@ -37,6 +38,7 @@ DEPENDENCIES
   rack-test (= 0.6.3)
   rspec (= 3.4.0)
   simplecov (= 0.11.1)
+  ttt-core (= 2.0.0)
 
 BUNDLED WITH
    1.11.2
