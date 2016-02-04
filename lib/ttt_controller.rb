@@ -1,5 +1,8 @@
 require 'game_parameters'
 require 'player_options'
+require 'web_ttt'
+require 'board_adapter'
+require 'players'
 
 class TTTController
 
@@ -11,15 +14,13 @@ class TTTController
     elsif route == '/player_options'
       chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
       chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
-      #game = WebTTT.new(GameParameters.new(request.params, request.session), Players.new)
-      #latest_board = game.play(move, board)
-      #look up the template for player_options.erb andn that is the body
-      [200, {}, {}]
+
+      @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play
+      game_page(@game_state)
+
     elsif route == '/next_move'
-      #game = Game.new(player_option)
-      #latest_board = game.play(3, board)
-      # look up the erb for the template game.erb and put that as the body
-      [200, {}, {}]
+      @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
+      game_page(@game_state)
     end
   end
 
@@ -34,5 +35,10 @@ class TTTController
   def self.landing_page
     template = erb('player_options.erb')
     return  [200, {}, [template]]
+  end
+
+  def self.game_page(game_status)
+    template = erb('game.erb')
+    return [200, {}, [template]]
   end
 end

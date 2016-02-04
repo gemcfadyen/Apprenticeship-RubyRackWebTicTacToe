@@ -3,8 +3,8 @@ require 'player_symbols'
 
 class BoardAdapter
 
-  def translate(web_representation_of_board)
-    grid = strip_to_grid_contents(web_representation_of_board).map do |cell_value|
+  def translate(grid_representation = '[0, 1, 2, 3, 4, 5, 6, 7, 8]')
+    grid = strip_to_grid_contents(grid_representation).map do |cell_value|
       to_nil?(cell_value) ? nil : PlayerSymbols::to_symbol(cell_value)
     end
 

@@ -1,14 +1,14 @@
 require 'player_options'
-require 'board_adapter'
 
 class GameParameters
   PLAYER_TYPE = 'player_type'
   MOVE = 'move-taken'
   GRID = 'grid'
 
-  def initialize(params, session)
+  def initialize(params, session, board_adapter)
     @params = params
     @session = session
+    @board_adapter = board_adapter
   end
 
   def player_option
@@ -20,8 +20,10 @@ class GameParameters
   end
 
   def board
-    BoardAdapter.new.translate(params[GRID])
+    params[GRID].nil? ?
+      board_adapter.translate :
+      board_adapter.translate(params[GRID])
   end
 
-  attr_reader :params, :session
+  attr_reader :params, :session, :board_adapter
 end
