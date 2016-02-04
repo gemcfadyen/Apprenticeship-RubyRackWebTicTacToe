@@ -16,8 +16,13 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'SimpleCov'
 
+#Setup Load Path
+lib = File.expand_path("../../lib", __FILE__)
+ttt_lib = File.expand_path("../../../Apprenticeship-RubyTicTacToe/lib", __FILE__)
+$:.unshift(lib).unshift(ttt_lib)
+
+require 'SimpleCov'
 SimpleCov.start
 
 RSpec.configure do |config|
