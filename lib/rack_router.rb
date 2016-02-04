@@ -33,7 +33,6 @@ class RackRouter
       return [200, {}, [template]]
     end
 
-
     if request_path == '/next_move'
       request = Rack::Request.new env
       p 'earlier player choice taken from session was: ' + request.session[:player_type].inspect
