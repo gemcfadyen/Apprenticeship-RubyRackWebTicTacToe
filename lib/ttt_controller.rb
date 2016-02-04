@@ -4,13 +4,13 @@ class TTTController
     route = env['REQUEST_PATH']
     request = Rack::Request.new env
     if route == '/'
-      #
       # PlayerOptionDisplay.new.show_player_options
       # ResponseBody.with()
       [200, {}, {}]
     elsif route == '/player_options'
       chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
       chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
+      WebTTT.new(GameParameters.new(request.params, request.session), Players.new)
       # selected_params = GameParameters.new(params, session).play which will call
       #game = Game.new(selected_params.player_option)
       #latest_board = game.play(move, board)

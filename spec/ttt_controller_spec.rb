@@ -9,7 +9,8 @@ RSpec.describe TTTController do
     env = Rack::MockRequest.env_for(
       '/',
       'REQUEST_PATH' => '/',
-      'REQUEST_METHOD' => 'GET'
+      'REQUEST_METHOD' => 'GET',
+      :params => {}
     )
 
     status, header, body = TTTController::call(env)
@@ -39,7 +40,7 @@ RSpec.describe TTTController do
       '/',
       'REQUEST_PATH' => '/next_move',
       'REQUEST_METHOD' => 'GET',
-      'params' => { 'move-taken' => '8', 'grid' => '[0, 1, 2, 3, 4, 5, 6, 7, 8]'},
+      :params => { 'move-taken' => '8', 'grid' => '[0, 1, 2, 3, 4, 5, 6, 7, 8]'},
       'rack.session' => { GameParameters::PLAYER_TYPE => "1"},
       :input => "?move-taken=8&grid=[0, 1, 2, 3, 4, 5, 6, 7, 8]"
     )
