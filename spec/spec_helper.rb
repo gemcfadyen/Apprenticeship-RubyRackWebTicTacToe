@@ -21,8 +21,17 @@
 lib = File.expand_path("../../lib", __FILE__)
 $:.unshift(lib)
 
-require 'SimpleCov'
+require 'simplecov'
+require 'coveralls'
+
 SimpleCov.start
+Coveralls.wear!
+
+SimpleCov.minimum_coverage 100
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+      SimpleCov::Formatter::HTMLFormatter,
+            Coveralls::SimpleCov::Formatter
+])
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
