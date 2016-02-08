@@ -1,0 +1,44 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    docile (1.1.5)
+    json (1.8.3)
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    rack (1.6.4)
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.2)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
+    simplecov (0.11.1)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    ttt-core (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri (= 1.6.7.2)
+  rack-test (= 0.6.3)
+  rspec (= 3.4.0)
+  simplecov (= 0.11.1)
+  ttt-core (= 2.0.0)
+
+BUNDLED WITH
+   1.11.2
