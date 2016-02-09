@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'uri'
 require 'grid_formatter'
 require 'game_state'
+require 'cgi'
 
 RSpec.describe "Game ERB View" do
 
