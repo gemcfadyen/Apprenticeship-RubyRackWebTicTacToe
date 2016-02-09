@@ -34,11 +34,11 @@ class TTTController
 
   def self.landing_page
     template = erb('player_options.erb')
-    return  [200, {}, [template]]
+    [200, {}, [template]]
   end
 
   def self.game_page(game_status)
     template = erb('game.erb')
-    return [200, {}, [template]]
+    [200, {}, [template]]
   end
 end
