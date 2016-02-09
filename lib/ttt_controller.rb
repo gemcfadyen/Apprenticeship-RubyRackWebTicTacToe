@@ -16,11 +16,11 @@ class TTTController
       chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
 
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play
-      game_page(@game_state)
+      game_page
 
     elsif route == '/next_move'
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
-      game_page(@game_state)
+      game_page
     end
   end
 
@@ -37,7 +37,7 @@ class TTTController
     [200, {}, [template]]
   end
 
-  def self.game_page(game_status)
+  def self.game_page
     template = erb('game.erb')
     [200, {}, [template]]
   end
