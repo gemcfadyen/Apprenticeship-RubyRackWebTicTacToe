@@ -13,12 +13,16 @@ class TTTController
       landing_page
     elsif route == '/player_options'
       chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
-      chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
+      env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
 
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play
       game_page
 
     elsif route == '/next_move'
+     p "Post request with next move received"
+     p "Params are " + request.params.to_s
+     p "Session is " + env['rack.session'][GameParameters::PLAYER_TYPE].to_s
+
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
       game_page
     end

@@ -18,7 +18,8 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a class="board-display" href="#" onclick="cellIsClicked()" data-id="cell-<%= cell.to_i %>" data-value="<%= cell.to_i + 1 %>"/>
+                    <a class="board-display" href="#" onclick="cellIsClicked()" data-id="cell-<%= cell.to_i %>"/>
+                      <%= cell.to_i + 1%>
                     <%else %>
                     <%= cell.to_i + 1 %>
                   <% end %>
