@@ -9,7 +9,7 @@ describe("Player selects a move from the web gui", function() {
   require('../../lib/javascript/PlayMoveOnClick');
 
   beforeEach(function() {
-    setFixtures('<a class="board-display" href="#" data-id=cell-1 data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/>');
+    setFixtures('<table id="grid-table"><tr><td><a class="board-display" href="#" data-id=cell-1 data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/></td></tr></table>');
     window.MoveHandler.bindEvents();
   });
 
@@ -27,4 +27,15 @@ describe("Player selects a move from the web gui", function() {
       failure: window.MoveHandler.error
     });
   });
+
+  it("on success, the table element is updated", function() {
+    window.MoveHandler.success("<table id=\"grid-table\"><tr><td>New-Content</td></tr></table>");
+    var elements = document.getElementsByTagName("td");
+    var contentsOfTag = elements[0].innerHTML;
+
+    expect(elements.length).toEqual(1);
+    expect(contentsOfTag).toEqual("New-Content");
+  });
+
+  //TODO test that the failure raises an alert
 });

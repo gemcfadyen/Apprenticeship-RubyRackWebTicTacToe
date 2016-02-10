@@ -9,7 +9,7 @@
   <body>
     <h1>Welcome To Tic Tac Toe
 
-      <table>
+      <table id = "grid-table" data-id = "grid-table">
         <% @game_state.formatted_rows.each do |row| %>
           <tr>
             <% row.each do |cell| %>
@@ -33,5 +33,7 @@
 
       <p><%= @game_state.status%></p>
 
-    </body>
-  </html>
+  </body>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</html>
