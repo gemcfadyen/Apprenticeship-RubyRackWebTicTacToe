@@ -24,6 +24,9 @@ class TTTController
      p "Session is " + env['rack.session'][GameParameters::PLAYER_TYPE].to_s
 
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
+
+     # Create json from the object i want to return
+
       game_page
     end
   end
