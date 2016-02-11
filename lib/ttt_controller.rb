@@ -3,28 +3,27 @@ require 'player_options'
 require 'web_ttt'
 require 'board_adapter'
 require 'players'
+require 'json'
 
 class TTTController
 
   def self.call(env)
     route = env['REQUEST_PATH']
     request = Rack::Request.new env
+
     if route == '/'
       landing_page
     elsif route == '/player_options'
       chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
-      chosen_player_type = env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
+      env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
 
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play
       game_page
 
     elsif route == '/next_move'
+      updated_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
 
-     p 'next move has been made'
-      @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
-
-     #Change @game_state into JSON and return in the body of the response rather than the erb here
-     # game_page
+      [200, {'Content-Length' => '78'}, [updated_state.as_json]]
     end
   end
 

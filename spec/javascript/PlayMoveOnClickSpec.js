@@ -17,7 +17,7 @@ describe("Player selects a move from the web gui", function() {
   it("on click, a post request should be sent with the selected move", function() {
     spyOn($, "ajax");
 
-    $(".board-display").click();
+   $(".board-display").click();
 
     expect($.ajax).toHaveBeenCalledWith({
       type: "POST",

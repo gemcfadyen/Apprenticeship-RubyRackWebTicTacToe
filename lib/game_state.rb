@@ -1,3 +1,5 @@
+require 'json'
+
 class GameState
 
   def initialize(formatted_rows, valid_moves, status)
@@ -10,12 +12,21 @@ class GameState
     valid_moves.include?(symbol)
   end
 
- def status?
-   !status.nil?
- end
+  def status?
+    !status.nil?
+  end
 
- def flatten_rows
-   formatted_rows.flatten
- end
+  def flatten_rows
+    formatted_rows.flatten
+  end
+
+  def as_json
+    JSON.generate ({
+      :formatted_rows => formatted_rows.flatten,
+      :valid_moves => valid_moves,
+      :status => status
+    })
+  end
+
   attr_reader :formatted_rows, :valid_moves, :status
 end

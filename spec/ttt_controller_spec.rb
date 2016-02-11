@@ -39,14 +39,19 @@ RSpec.describe TTTController do
     env = Rack::MockRequest.env_for(
       '/',
       'REQUEST_PATH' => '/next_move',
-      'REQUEST_METHOD' => 'GET',
+      'REQUEST_METHOD' => 'POST',
       :params => { 'move-taken' => '8', 'grid' => '[0, 1, 2, 3, 4, 5, 6, 7, 8]'},
       'rack.session' => { GameParameters::PLAYER_TYPE => "1"},
-      :input => "?move-taken=8&grid=[0, 1, 2, 3, 4, 5, 6, 7, 8]"
+      :input => 'move-taken=8&grid=[0, 1, 2, 3, 4, 5, 6, 7, 8]'
     )
 
     status, header, body = TTTController::call(env)
 
     expect(status).to eq 200
+    expect(header['Content-Length']).to eq '78'
+    json_for_next_move = JSON.parse(body.first)
+    expect(json_for_next_move["valid_moves"]).to eq ["X", "O"]
+    expect(json_for_next_move["formatted_rows"]).to eq [0, 1, 2, 3, 4, 5, 6, 7, "X"]
+    expect(json_for_next_move["status"]).to eq nil
   end
 end
