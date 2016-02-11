@@ -54,4 +54,18 @@ RSpec.describe TTTController do
     expect(json_for_next_move["formatted_rows"]).to eq [0, 1, 2, 3, 4, 5, 6, 7, "X"]
     expect(json_for_next_move["status"]).to eq nil
   end
+
+  it "can successfully route favicon.ico" do
+    env = Rack::MockRequest.env_for(
+      '/',
+      'REQUEST_PATH' => '/favicon.ico',
+      'REQUEST_METHOD' => 'GET'
+    )
+
+    status, header, body = TTTController::call(env)
+
+    expect(status).to eq 200
+    expect(header).to be {}
+    expect(body).to eq []
+  end
 end

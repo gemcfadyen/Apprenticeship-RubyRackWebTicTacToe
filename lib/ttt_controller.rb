@@ -11,7 +11,9 @@ class TTTController
     route = env['REQUEST_PATH']
     request = Rack::Request.new env
 
-    if route == '/'
+    if route == '/favicon.ico'
+      [200, {}, []]
+    elsif route == '/'
       landing_page
     elsif route == '/player_options'
       chosen_player_type = request.params[GameParameters::PLAYER_TYPE]
