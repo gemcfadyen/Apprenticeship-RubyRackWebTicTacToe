@@ -19,8 +19,12 @@ class TTTController
       game_page
 
     elsif route == '/next_move'
+
+     p 'next move has been made'
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
-      game_page
+
+     #Change @game_state into JSON and return in the body of the response rather than the erb here
+     # game_page
     end
   end
 

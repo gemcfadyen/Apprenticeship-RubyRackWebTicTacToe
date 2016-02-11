@@ -18,7 +18,7 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a href="/next_move?move-taken=<%= cell %>&grid=<%=@game_state.flatten_rows%>">
+                    <a class="board-display" href="/next_move?move-taken=<%= cell %>&grid=<%=@game_state.flatten_rows%>" data-id=cell-<%=cell.to_i%> data-value=<%=cell.to_i%> data-grid=<%=@game_state.flatten_rows.to_s.delete(' ')%> >
                       <%= cell.to_i + 1 %>
                     </a>
                   <%else %>
@@ -34,6 +34,7 @@
       <p><%= @game_state.status%></p>
 
   </body>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="javascript/PlayMoveOnClick.js"></script>
+  <script src="javascript/LoadHandlers.js"></script>
 </html>
