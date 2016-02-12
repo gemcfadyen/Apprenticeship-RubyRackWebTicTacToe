@@ -46,6 +46,4 @@ describe("Player selects a move from the web gui", function() {
 
     expect(console.error).toHaveBeenCalledWith("Sorry, an exception has occurred. Please restart the game.");
   });
-
-  //TODO test that the failure raises an alert
 });

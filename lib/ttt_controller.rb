@@ -24,7 +24,7 @@ class TTTController
 
     elsif route == '/next_move'
       updated_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
-
+      p "updated state as json is: " + updated_state.as_json.inspect
       [200, {'Content-Type' => 'text/html'}, [updated_state.as_json]]
     end
   end

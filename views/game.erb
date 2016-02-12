@@ -18,7 +18,8 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a class="board-display" href="/next_move?move-taken=<%= cell %>&grid=<%=@game_state.flatten_rows%>" data-id=cell-<%=cell.to_i%> data-value=<%=cell.to_i%> data-grid=<%=@game_state.flatten_rows.to_s.delete(' ')%> >
+                    <a class="board-display" href="/next_move?move-taken=<%= cell %>&grid=<%=@game_state.flatten_rows%>" data-id=cell-<%=cell.to_i%> data-value=<%=cell.to_i%> data-grid=<%=@game_state.formatted_rows.to_s
+                    %> >
                       <%= cell.to_i + 1 %>
                     </a>
                   <%else %>
