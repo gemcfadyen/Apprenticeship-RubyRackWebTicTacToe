@@ -10,12 +10,12 @@ describe("Player selects a move from the web gui", function() {
   var BoardDisplay = require('../../lib/javascript/BoardDisplay');
 
   beforeEach(function() {
-    setFixtures('<table id="grid-table"><tr><td><a class="board-display" href="#" data-id=cell-1 data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/></td></tr></table>');
+    setFixtures('<table id="grid-table"><tr><td><a class="board-display" href="#" data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/></td></tr></table>');
     window.MoveHandler.bindEvents();
   });
 
 
-  xit("on click, a post request should be sent with the selected move", function() {
+  it("on click, a post request should be sent with the selected move", function() {
     spyOn($, "ajax");
 
     $(".board-display").click();
@@ -23,18 +23,14 @@ describe("Player selects a move from the web gui", function() {
     expect($.ajax).toHaveBeenCalledWith({
       type: "POST",
       url: "next_move",
-      data: {
-        "formatted_rows":["X",1,2,3,4,5,6,7,8],
-        "valid_moves":["X","O"],
-        "status":null
-      },
+      data: "move-taken=0&grid=0,1,2,3,4,5,6,7,8",
       success: window.MoveHandler.success,
       failure: window.MoveHandler.error
     });
   });
 
-  it("on success, the table element is updated", function() {
-  //  spyOn(BoardDisplay, "paint");
+ it("on success, the table element is updated", function() {
+  //TODO if injected? -  spyOn(BoardDisplay, "paint");
     window.MoveHandler.success({
       "formatted_rows":["X",1,2,3,4,5,6,7,8],
       "valid_moves":["X","O"],
@@ -60,3 +56,4 @@ describe("Player selects a move from the web gui", function() {
     expect(console.error).toHaveBeenCalledWith("Sorry, an exception has occurred. Please restart the game.");
   });
 });
+

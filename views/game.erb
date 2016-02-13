@@ -9,7 +9,7 @@
   <body>
     <h1>Welcome To Tic Tac Toe
 
-      <table id = "grid-table" data-id = "grid-table">
+      <table id = "grid-table">
         <% @game_state.formatted_rows.each do |row| %>
           <tr>
             <% row.each do |cell| %>
@@ -18,7 +18,7 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a class="board-display" href="/next_move?move-taken=<%= cell %>&grid=<%=@game_state.flatten_rows%>" data-id=cell-<%=cell.to_i%> data-value=<%=cell.to_i%> data-grid=<%=@game_state.formatted_rows.to_s
+                    <a class="board-display" href="#" data-value = <%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.to_s
                     %> >
                       <%= cell.to_i + 1 %>
                     </a>
