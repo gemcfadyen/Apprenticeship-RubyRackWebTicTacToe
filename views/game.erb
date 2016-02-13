@@ -18,7 +18,7 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a class="board-display" href="#" data-value = <%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.flatten.to_s.delete(' ')
+                    <a class="board-display" href="next_move" data-value = <%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.flatten.to_s.delete(' ')
                     %> >
                       <%= cell.to_i + 1 %>
                     </a>

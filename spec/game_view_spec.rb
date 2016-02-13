@@ -20,22 +20,19 @@ RSpec.describe "Game ERB View" do
 
   it "sends back grid as zero indexed based" do
     @game_state = GameState.new(GridFormatter.new.format(Board.new), PlayerSymbols::all, nil)
-
     html_doc = transform_to_html(load_template.result(binding()))
-    first_link = ahref_links(html_doc).first
-    query_params = query_params_from(first_link)
 
-    expect(query_params['grid']).to eq ["[0, 1, 2, 3, 4, 5, 6, 7, 8]"]
+    first_link = ahref_links(html_doc).first
+
+    expect(first_link['data-grid']).to eq "[0,1,2,3,4,5,6,7,8]"
   end
 
   it "sends move selected as zero index based" do
     @game_state = GameState.new(GridFormatter.new.format(Board.new), PlayerSymbols::all, nil)
-
     html_doc = transform_to_html(load_template.result(binding()))
     first_link = ahref_links(html_doc).first
-    query_params = query_params_from(first_link)
 
-    expect(query_params['move-taken']).to eq ["0"]
+    expect(first_link['data-value']).to eq "0"
   end
 
   it "game page with empty grid contains 9 links" do
@@ -63,6 +60,7 @@ RSpec.describe "Game ERB View" do
     expect(count_number_of("X", all_table_entries(html_doc))).to eq 1
   end
 
+  #TODO will move into BoardPresenter test
   it "game page has no links when game is won" do
     @game_state = GameState.new(GridFormatter.new.format(Board.new([PlayerSymbols::X, PlayerSymbols::X, PlayerSymbols::X, PlayerSymbols::O, nil, nil, PlayerSymbols::O, nil, nil])), PlayerSymbols::all, "Winner")
 
@@ -112,7 +110,10 @@ RSpec.describe "Game ERB View" do
   end
 
   def query_params_from(link)
-    CGI::parse(URI::parse(link['href']).query)
+    ahref = CGI::parse(link['href'])
+    p "ahref is :  " + ahref.inspect
+    p "getting query params is:  "+ ahref.query
+    ahref.query
   end
 
   def count_ahref_links(html)
