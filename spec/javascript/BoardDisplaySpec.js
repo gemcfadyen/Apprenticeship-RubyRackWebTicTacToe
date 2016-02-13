@@ -4,10 +4,10 @@ describe("Creates grid containing the correct number of links for display", func
 
   it("creates table containing one move and eight links", function() {
 
-    var data_for_display =  {
+    var data_for_display = {
       "formatted_rows": ["X",1,2,3,4,5,6,7,8],
       "valid_moves": ["X","O"],
-      "status":null
+      "status": null
     };
 
     var updatedTable = BoardDisplay.paint(data_for_display);
@@ -29,7 +29,7 @@ describe("Creates grid containing the correct number of links for display", func
       "status": null
     };
 
-    var updatedTable = BoardDisplay.paint(data_for_display);
+  var updatedTable = BoardDisplay.paint(data_for_display);
     var cells = updatedTable.getElementsByTagName("td");
     var tableLinks = $(cells).find('a');
 

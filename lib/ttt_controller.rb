@@ -3,7 +3,6 @@ require 'player_options'
 require 'web_ttt'
 require 'board_adapter'
 require 'players'
-require 'json'
 
 class TTTController
 
@@ -20,12 +19,12 @@ class TTTController
       env['rack.session'][GameParameters::PLAYER_TYPE] = chosen_player_type
 
       @game_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play
-      game_page
 
+      game_page
     elsif route == '/next_move'
       updated_state = WebTTT.new(GameParameters.new(request.params, request.session, BoardAdapter.new), Players.new, GridFormatter.new).play_move
       p "updated state as json is: " + updated_state.as_json.inspect
-      [200, {'Content-Type' => 'text/html'}, [updated_state.as_json]]
+      [200, {'Content-Type' => 'json'}, [updated_state.as_json]]
     end
   end
 
