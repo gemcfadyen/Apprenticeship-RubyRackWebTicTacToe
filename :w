@@ -14,26 +14,21 @@ var BoardDisplay = {};
     console.log("json grid to display is: " + gameStateAsJson.formatted_rows);
     console.log("json valid moves for display is: " + gameStateAsJson.valid_moves);
     console.log("json game state to display is: " + gameStateAsJson.status);
-    var offset = 0;
+    var dimension = 3;
+    var offset = 3;
     for(j=0; j< Math.sqrt(grid_representation.length); j++) {
-
-     console.log("row index is: " + j);
       var row = table.insertRow(j);
 
-      for (i = 0; i < 3; i++) {
-       console.log("adding cell " + i );
-
+      for (i= dimension; i < offset; i++) {
         var cell = row.insertCell(i);
-        var cellIndexForDisplay = grid_representation[i + offset];
-        if($.inArray(cellIndexForDisplay, valid_moves) != -1) {
-          cell.innerHTML = cellIndexForDisplay;
+        if($.inArray(grid_representation[i+offset], valid_moves) != -1) {
+          cell.innerHTML = grid_representation[i]
         } else {
-          cell.innerHTML = "<a class=\"board-display\" href=\"#\" data-id=cell-" + cellIndexForDisplay + " data-value=" + cellIndexForDisplay + " data-grid=" + grid_representation + ">" + (parseInt(cellIndexForDisplay) + 1) + "</a>";
+          cell.innerHTML = "<a class=\"board-display\" href=\"#\" data-id=cell-" + grid_representation[i] + " data-value=" + i + " data-grid=" + grid_representation + ">" + i + "</a>";
         }
+        offset = offset + offset;
       }
-      offset = offset + 3;
 
-      console.log('new offset is ' + offset );
     }
 
     table.setAttributeNode(tableAttribute);
