@@ -1,9 +1,8 @@
 var BoardDisplay = BoardDisplay|| require('../../lib/javascript/BoardDisplay');
 
 describe("Creates grid containing the correct number of links for display", function() {
-  //var BoardDisplay = require('../../lib/javascript/BoardDisplay');
 
-  it("creates table containing one move and eight links", function() {
+  xit("creates table containing one move and eight links", function() {
 
     var data_for_display =  {"formatted_rows":["X",1,2,3,4,5,6,7,8],"valid_moves":["X","O"],"status":null};
 
@@ -17,7 +16,7 @@ describe("Creates grid containing the correct number of links for display", func
   });
 
 
-  it("forms a link correctly in the table", function() {
+  xit("forms a link correctly in the table", function() {
 
     var data_for_display =  {"formatted_rows":["X","O","X",3,"X","O","O","X","O"],"valid_moves":["X","O"],"status":null};
 
