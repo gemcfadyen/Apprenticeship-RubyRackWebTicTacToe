@@ -7,10 +7,11 @@ describe("Player selects a move from the web gui", function() {
   $ = require('jquery');
   require('jasmine-jquery');
   require('../../lib/javascript/PlayMoveOnClick');
-  var BoardDisplay = require('../../lib/javascript/BoardDisplay');
+  var boardDisplay = require('../../lib/javascript/BoardDisplay');
+  var gameStatusDisplay = require('../../lib/javascript/GameStatusDisplay');
 
   beforeEach(function() {
-    setFixtures('<table id="grid-table"><tr><td><a class="board-display" href="#" data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/></td></tr></table>');
+    setFixtures('<table id="grid-table"><tr><td><a class="board-display" href="#" data-value="0" data-grid=[0,1,2,3,4,5,6,7,8]/></td></tr></table><p id="game-status"></p>');
     window.MoveHandler.bindEvents();
   });
 
@@ -29,21 +30,37 @@ describe("Player selects a move from the web gui", function() {
     });
   });
 
- it("on success, the table element is updated", function() {
-  //TODO if injected? -  spyOn(BoardDisplay, "paint");
-    window.MoveHandler.success({
+  it("on success, the table element is updated", function() {
+    spyOn(boardDisplay, "paint").and.returnValue('<table><tr><td>New Content</td></tr></table>');
+    spyOn($("#grid-table"), 'replaceWith');
+
+    var gameData = {
       "formatted_rows":["X",1,2,3,4,5,6,7,8],
       "valid_moves":["X","O"],
       "status":null
-    });
+    };
+
+    window.MoveHandler.success(gameData);
 
     var elements = document.getElementsByTagName("td");
-    console.log("get cells in test " + elements);
+    expect(elements[0].innerHTML).toEqual("New Content");
+    expect(boardDisplay.paint).toHaveBeenCalledWith(gameData);
+    // expect($("#grid-table").replaceWith).toHaveBeenCalledWith("<table></table>");
+  });
 
-    var contentsOfTag = elements[0].innerHTML;
+  it("on game over, the status is updated", function() {
+    spyOn(gameStatusDisplay, "print").and.returnValue("<p>X has won</p>");
+    var gameData = {
+      "formatted_rows":["X","X","X","O","O",5,6,7,8],
+      "valid_moves":["X","O"],
+      "status": "X has won"
+    }
 
-    expect(elements.length).toEqual(9);
-   // expect(boardDisplay.paint).toHaveBeenCalled();
+    window.MoveHandler.success(gameData);
+
+    var elements = document.getElementsByTagName("p");
+    expect(elements[0].innerHTML).toEqual("X has won");
+    expect(gameStatusDisplay.print).toHaveBeenCalledWith(gameData);
   });
 
   it("on failure, raises an error", function() {

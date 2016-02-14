@@ -9,7 +9,7 @@
   <body>
     <h1>Welcome To Tic Tac Toe
 
-      <table id = "grid-table">
+      <table id="grid-table">
         <% @game_state.formatted_rows.each do |row| %>
           <tr>
             <% row.each do |cell| %>
@@ -18,7 +18,7 @@
                   <%= cell %>
                 <% else %>
                   <% if !@game_state.status? %>
-                    <a class="board-display" href="next_move" data-value = <%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.flatten.to_s.delete(' ')
+                    <a class="board-display" href="next_move" data-value=<%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.flatten.to_s.delete(' ')
                     %> >
                       <%= cell.to_i + 1 %>
                     </a>
@@ -32,10 +32,11 @@
         <% end %>
       </table>
 
-      <p><%= @game_state.status%></p>
+      <p id='game-status'><%= @game_state.status%></p>
 
   </body>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="javascript/GameStatusDisplay.js"></script>
   <script src="javascript/BoardDisplay.js"></script>
   <script src="javascript/PlayMoveOnClick.js"></script>
   <script src="javascript/LoadHandlers.js"></script>
