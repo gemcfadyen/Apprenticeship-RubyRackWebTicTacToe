@@ -109,13 +109,6 @@ RSpec.describe "Game ERB View" do
     html.css("a")
   end
 
-  def query_params_from(link)
-    ahref = CGI::parse(link['href'])
-    p "ahref is :  " + ahref.inspect
-    p "getting query params is:  "+ ahref.query
-    ahref.query
-  end
-
   def count_ahref_links(html)
     ahref_links(html).length
   end
