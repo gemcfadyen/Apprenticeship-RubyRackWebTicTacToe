@@ -29,12 +29,31 @@ describe("Creates grid containing the correct number of links for display", func
       "status": null
     };
 
-  var updatedTable = BoardDisplay.paint(data_for_display);
+    var updatedTable = BoardDisplay.paint(data_for_display);
     var cells = updatedTable.getElementsByTagName("td");
     var tableLinks = $(cells).find('a');
 
     expect(tableLinks.length).toEqual(1);
     expect(tableLinks[0].innerHTML).toEqual('4');
     expect(cells[3].innerHTML).toEqual("<a class=\"board-display\" href=\"#\" data-value=\"3\" data-grid=\"X,O,X,3,X,O,O,X,O\">4</a>");
+  });
+
+  it("has no links in table when game is won", function() {
+
+    var data_for_display =  {
+      "formatted_rows": ["X","X","X",3,"O","O",6,"X","O"],
+      "valid_moves": ["X","O"],
+      "status": "X has won"
+    };
+
+
+    var updatedTable = BoardDisplay.paint(data_for_display);
+    var cells = updatedTable.getElementsByTagName("td");
+    var tableLinks = $(cells).find('a');
+
+    expect(tableLinks.length).toEqual(0);
+    expect(cells[3].innerHTML).toEqual('4');
+    expect(cells[6].innerHTML).toEqual('7');
+    expect(cells[0].innerHTML).toEqual('X');
   });
 });
