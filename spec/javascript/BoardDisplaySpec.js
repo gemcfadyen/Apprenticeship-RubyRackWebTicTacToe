@@ -11,10 +11,8 @@ describe("Creates grid containing the correct number of links for display", func
     };
 
     var updatedTable = BoardDisplay.paint(data_for_display);
-
-    console.log("Table returned from method under test is: " + updatedTable.innerHTML);
-
     var cells = updatedTable.getElementsByTagName("td");
+
     expect(cells.length).toEqual(9);
     expect($(cells).find("a").length).toEqual(8);
     expect(cells[0].innerHTML).toEqual("X");
@@ -22,7 +20,6 @@ describe("Creates grid containing the correct number of links for display", func
 
 
   it("forms a link correctly in the table", function() {
-
     var data_for_display =  {
       "formatted_rows": ["X","O","X",3,"X","O","O","X","O"],
       "valid_moves": ["X","O"],
@@ -39,13 +36,11 @@ describe("Creates grid containing the correct number of links for display", func
   });
 
   it("has no links in table when game is won", function() {
-
     var data_for_display =  {
       "formatted_rows": ["X","X","X",3,"O","O",6,"X","O"],
       "valid_moves": ["X","O"],
       "status": "X has won"
     };
-
 
     var updatedTable = BoardDisplay.paint(data_for_display);
     var cells = updatedTable.getElementsByTagName("td");
