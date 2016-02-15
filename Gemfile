@@ -10,4 +10,5 @@ group :test do
   gem 'coveralls', '0.8.10', :require => false
   gem 'nokogiri', '1.6.7.2'
   gem 'rake', '10.5.0'
+  gem 'jasmine', '2.4.0'
 end

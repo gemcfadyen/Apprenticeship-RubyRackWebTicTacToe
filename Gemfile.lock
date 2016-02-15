@@ -14,12 +14,19 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    jasmine (2.4.0)
+      jasmine-core (~> 2.4)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.4.1)
     json (1.8.3)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    phantomjs (2.1.1.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -60,6 +67,7 @@ PLATFORMS
 
 DEPENDENCIES
   coveralls (= 0.8.10)
+  jasmine (= 2.4.0)
   json (= 1.8.3)
   nokogiri (= 1.6.7.2)
   rack-test (= 0.6.3)
