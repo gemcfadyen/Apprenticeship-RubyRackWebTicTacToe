@@ -9,36 +9,16 @@
   <body>
     <h1>Welcome To Tic Tac Toe
 
-
       <table id="grid-table">
-        <% @game_state.formatted_rows.each do |row| %>
-          <tr>
-            <% row.each do |cell| %>
-              <td>
-                <% if @game_state.valid_moves_includes?(cell.to_s) %>
-                  <%= cell %>
-                <% else %>
-                  <% if !@game_state.status? %>
-                    <a class="board-display" href="next_move" data-value=<%= cell.to_i %> data-grid=<%=@game_state.formatted_rows.flatten.to_s.delete(' ')
-                    %> >
-                      <%= cell.to_i + 1 %>
-                    </a>
-                  <%else %>
-                    <%= cell.to_i + 1 %>
-                  <% end %>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="javascript/GameStatusDisplay.js"></script>
+        <script src="javascript/BoardDisplay.js"></script>
+        <script src="javascript/PlayMoveOnClick.js"></script>
+        <script src="javascript/LoadHandlers.js"></script>
+        <script>MoveHandler.success(<%= @game_state.as_json %>)</script>
       </table>
 
       <p id='game-status'><%= @game_state.status%></p>
 
   </body>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script src="javascript/GameStatusDisplay.js"></script>
-  <script src="javascript/BoardDisplay.js"></script>
-  <script src="javascript/PlayMoveOnClick.js"></script>
-  <script src="javascript/LoadHandlers.js"></script>
 </html>
