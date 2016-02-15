@@ -6,21 +6,21 @@
     <link rel='stylesheet' type='text/css' href="/css/theme.css" />
   </head>
   <body>
-    <h1>Welcome To Tic Tac Toe
+    <h1>Welcome To Tic Tac Toe</h1>
 
-      <p>Please Select A Player Option</p>
-      <form action='player_options' method='post'>
+    <p>Please Select A Player Option</p>
+    <form action='player_options' method='post'>
       <ul>
         <% @player_options.each do |id, player_type| %>
           <li>
-          <label>
-            <input type='radio' name ='player_type' value ='<%= id %>' id = <%= id %>/>
-            <%= player_type %>
-          </label>
+            <label>
+              <input type='radio' name ='player_type' value ='<%= id %>' id = <%= id %>/>
+              <%= player_type %>
+            </label>
           </li>
         <% end %>
       </ul>
       <button type='submit' class='btn btn-primary'>Play</button>
-      </form>
+    </form>
   </body>
 </html>

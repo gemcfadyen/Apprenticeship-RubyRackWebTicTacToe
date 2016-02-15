@@ -16,7 +16,7 @@ describe("Player selects a move from the web gui", function() {
   });
 
 
-  it("on click, a post request should be sent with the selected move", function() {
+  it("sends a POST when a move is taken", function() {
     spyOn($, "ajax");
 
     $(".board-display").click();
@@ -30,7 +30,7 @@ describe("Player selects a move from the web gui", function() {
     });
   });
 
-  it("on success, the table element is updated", function() {
+  it("updates the table when a successful move is made", function() {
     spyOn(boardDisplay, "paint").and.returnValue('<table><tr><td>New Content</td></tr></table>');
     spyOn($("#grid-table"), 'replaceWith');
 
@@ -45,10 +45,9 @@ describe("Player selects a move from the web gui", function() {
     var elements = document.getElementsByTagName("td");
     expect(elements[0].innerHTML).toEqual("New Content");
     expect(boardDisplay.paint).toHaveBeenCalledWith(gameData);
-    // expect($("#grid-table").replaceWith).toHaveBeenCalledWith("<table></table>");
   });
 
-  it("on game over, the status is updated", function() {
+  it("displays the status when the game is over", function() {
     spyOn(gameStatusDisplay, "print").and.returnValue("<p>X has won</p>");
     var gameData = {
       "formatted_rows":["X","X","X","O","O",5,6,7,8],
@@ -63,7 +62,7 @@ describe("Player selects a move from the web gui", function() {
     expect(gameStatusDisplay.print).toHaveBeenCalledWith(gameData);
   });
 
-  it("on failure, raises an error", function() {
+  it("raises an error when a failure occurs", function() {
     spyOn(console, "error");
 
     window.MoveHandler.error();
