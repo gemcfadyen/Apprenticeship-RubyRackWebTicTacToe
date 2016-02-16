@@ -15,7 +15,6 @@ describe("Player selects a move from the web gui", function() {
     window.MoveHandler.bindEvents();
   });
 
-
   it("sends a POST when a move is taken", function() {
     spyOn($, "ajax");
 
@@ -72,4 +71,3 @@ describe("Player selects a move from the web gui", function() {
     expect(console.error).toHaveBeenCalledWith("Sorry, an exception has occurred. Please restart the game.");
   });
 });
-
