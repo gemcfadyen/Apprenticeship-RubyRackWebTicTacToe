@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'ttt-core', '2.0.0'
+gem 'json', '1.8.3'
 
 group :test do
   gem 'rack-test', '0.6.3'
