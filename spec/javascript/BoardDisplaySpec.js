@@ -47,8 +47,14 @@ describe("Creates grid containing the correct number of links for display", func
     var tableLinks = $(cells).find('a');
 
     expect(tableLinks.length).toEqual(0);
-    expect(cells[3].innerHTML).toEqual('4');
-    expect(cells[6].innerHTML).toEqual('7');
     expect(cells[0].innerHTML).toEqual('X');
+    expect(cells[1].innerHTML).toEqual('X');
+    expect(cells[2].innerHTML).toEqual('X');
+    expect(cells[3].innerHTML).toEqual('4');
+    expect(cells[4].innerHTML).toEqual('O');
+    expect(cells[5].innerHTML).toEqual('O');
+    expect(cells[6].innerHTML).toEqual('7');
+    expect(cells[7].innerHTML).toEqual('X');
+    expect(cells[8].innerHTML).toEqual('O');
   });
 });
